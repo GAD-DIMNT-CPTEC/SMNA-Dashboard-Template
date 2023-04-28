@@ -8,6 +8,8 @@ Este repositório trata da organização e apresentação dos resultados do GSI 
 2. `SMNA-Dashboard.ipynb`: utilizado para fornecer a interface de dashboard para a exploração dos resultados;
 3. `SMNA-Dashboard-jupyter.ipynb`: utilizado para fornecer as widgets sem a interface do dashboard (os dados são explorados dentro do próprio Jupyter).
 
+![SMNA-Dashboard.gif](SMNA-Dashboard.gif)
+
 ## Uso
 
 Para a utilização local dos notebooks, recomenda-se a utilização do arquivo de ambiente `environment.yml` para a criação do ambiente `SMNA` com os pacotes necessários para a utilização do dashboard. Para criar o ambiente, utilize o comando a seguir:
