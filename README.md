@@ -80,7 +80,7 @@ As informações do log do GSI são organizadas em um dataframe com a marcação
 5403 2023-03-16 00:00:00 Jo Global        832986 645663.456547 0.775 OMA (AFTER 2nd OUTER LOOP)
 ```
 
-Considerando vários experimentos, os dataframes são concatenados em um só (`dfs`), o qual é salvo em disco no formato pickle. A indexação do dataframe `dfs` pode ser feita da seguinte forma:
+Considerando vários experimentos, os dataframes são concatenados em um só (`dfs`), o qual é salvo em disco no formato CSV. A indexação do dataframe `dfs` pode ser feita da seguinte forma:
 
 1. Escolha de um subdataframe: 
 
