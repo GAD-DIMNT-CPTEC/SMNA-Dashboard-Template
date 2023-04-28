@@ -9,6 +9,7 @@ Este repositório trata da organização e apresentação dos resultados do GSI 
 3. `SMNA-Dashboard-jupyter.ipynb`: utilizado para fornecer as widgets sem a interface do dashboard (os dados são explorados dentro do próprio Jupyter).
 
 ![SMNA-Dashboard.gif](SMNA-Dashboard.gif)
+![SMNA-Dashboard-panel.gif](SMNA-Dashboard-panel.gif)
 
 ## Uso
 
