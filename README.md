@@ -7,6 +7,30 @@ Este repositório trata da organização e apresentação dos resultados do GSI 
 1. `SMNA-Dashboard_load_files_create_dataframe_save.ipynb`: utilizado para a leitura e organização dos arquivos de log do GSI;
 2. `SMNA-Dashboard.ipynb`: utilizado para fornecer a interface de dashboard para a exploração dos resultados.
 
+## Uso
+
+Para a utilização local dos notebooks, recomenda-se a utilização do arquivo de ambiente `environment.yml` para a criação do ambiente `SMNA` com os pacotes necessários para a utilização do dashboard. Para criar o ambiente, utilize o comando a seguir:
+
+```
+conda env create -f environment.yml
+```
+
+Os notebooks fornecidos são utilizados na ordem apresentada acima. Se o repositório for baixado para teste, então pode-se utilizar apenas o notebook `SMNA-Dashboard.ipynb`, da seguinte forma:
+
+```
+panel serve SMNA-Dashboard.ipynb --autoreload --show
+```
+
+O comando acima, abre diretamente a interface do dashboard no navegador. Para abrir o conteúdo do notebook (incluindo o notebook `SMNA-Dashboard_load_files_create_dataframe_save.ipynb`), execute o comando:
+
+```
+jupyter-notebook SMNA-Dashboard.ipynb
+```
+
+**Nota:** o notebook `SMNA-Dashboard_load_files_create_dataframe_save.ipynb` contém exemplos de indexação do dataframe `dts`.
+
+## Informações
+
 Especificamente, são tratadas as seguintes informações, obtidas a partir do arquivo de log do GSI:
 
 ```
