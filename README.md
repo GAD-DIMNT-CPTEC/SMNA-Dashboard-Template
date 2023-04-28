@@ -1,11 +1,12 @@
 # SMNA-Dashboard
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/GAD-DIMNT-CPTEC/SMNA-Dashboard/HEAD)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/GAD-DIMNT-CPTEC/SMNA-Dashboard/blob/main/SMNA-Dashboard-jupyter.ipynb/HEAD)
 
-Este repositório trata da organização e apresentação dos resultados do GSI em relação à minimização da função custo do 3DVar. São fornecidos dois notebooks:
+Este repositório trata da organização e apresentação dos resultados do GSI em relação à minimização da função custo do 3DVar. São fornecidos três notebooks:
 
 1. `SMNA-Dashboard_load_files_create_dataframe_save.ipynb`: utilizado para a leitura e organização dos arquivos de log do GSI;
-2. `SMNA-Dashboard.ipynb`: utilizado para fornecer a interface de dashboard para a exploração dos resultados.
+2. `SMNA-Dashboard.ipynb`: utilizado para fornecer a interface de dashboard para a exploração dos resultados;
+3. `SMNA-Dashboard-jupyter.ipynb`: utilizado para fornecer as widgets sem a interface do dashboard (os dados são explorados dentro do próprio Jupyter).
 
 ## Uso
 
@@ -24,7 +25,7 @@ panel serve SMNA-Dashboard.ipynb --autoreload --show
 O comando acima, abre diretamente a interface do dashboard no navegador. Para abrir o conteúdo do notebook (incluindo o notebook `SMNA-Dashboard_load_files_create_dataframe_save.ipynb`), execute o comando:
 
 ```
-jupyter-notebook SMNA-Dashboard.ipynb
+jupyter-notebook SMNA-Dashboard-jupyter.ipynb
 ```
 
 **Nota:** o notebook `SMNA-Dashboard_load_files_create_dataframe_save.ipynb` contém exemplos de indexação do dataframe `dts`.
