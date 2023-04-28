@@ -52,12 +52,12 @@ init_doc()
 
 # # SMNA Dashboard
 # 
-# Este notebook trata da apresentação dos resultados do GSI em relação à minimização da função custo do 3DVar. A apresentação dos resultados é feita a partir da leitura de um objeto pickle e os gráficos são mostrados em um dashboard do Panel para explorar as informações nele contidas. Para mais informações sobre o objeto pickle e a sua estrutura de dados, veja o notebook \`SMNA_Dashboard-load_files_create_dataframe_save.ipynb\`.
+# Este notebook trata da apresentação dos resultados do GSI em relação à minimização da função custo do 3DVar. A apresentação dos resultados é feita a partir da leitura de um arquivo CSV e os gráficos são mostrados em um dashboard do Panel para explorar as informações nele contidas. Para mais informações sobre o arquivo CSV e a sua estrutura de dados, veja o notebook \`SMNA_Dashboard-load_files_create_dataframe_save.ipynb\`.
 # 
-# Para realizar o deploy do dashboard no GitHub, é necessário converter este notebook em um script executável, o que pode ser feito a partir da interface do Jupyter (File -> Save and Export Notebook As... -> Executable Script). A seguir, utilize o comando abaixo para converter o script em uma página HTML. Junto com a página, será gerado um arquivo JavaScript e ambos devem ser adicionados ao repositório, junto com o arquivo pickle.
+# Para realizar o deploy do dashboard no GitHub, é necessário converter este notebook em um script executável, o que pode ser feito a partir da interface do Jupyter (File -> Save and Export Notebook As... -> Executable Script). A seguir, utilize o comando abaixo para converter o script em uma página HTML. Junto com a página, será gerado um arquivo JavaScript e ambos devem ser adicionados ao repositório, junto com o arquivo CSV.
 # 
 # \`\`\`
-# panel convert SMNA_Dashboard.py --to pyodide-worker --out .
+# panel convert SMNA-Dashboard.py --to pyodide-worker --out .
 # \`\`\`
 # 
 # ---
@@ -72,7 +72,6 @@ import numpy as np
 import pandas as pd
 import hvplot.pandas
 import panel as pn
-import pickle as pk
 
 from datetime import datetime, timedelta
 from matplotlib import pyplot as plt
@@ -83,10 +82,9 @@ pn.extension(sizing_mode="stretch_width")
 # In[2]:
 
 
-# Carrega o objeto pickle
+# Carrega o arquivo CSV
 
-dfs = pk.load(open(os.path.join('./', 'jo_table_series.pkl'), 'rb'))
-
+dfs = pd.read_csv('https://raw.githubusercontent.com/GAD-DIMNT-CPTEC/SMNA-Dashboard/main/jo_table_series.csv', header=[0, 1], parse_dates=[('df_dtc', 'Date'),('df_bamh_T0', 'Date'),('df_bamh_T4', 'Date'),('df_bamh_GT4AT2', 'Date')])
 
 # In[3]:
 
