@@ -1,6 +1,6 @@
 # SMNA-Dashboard
 
-<a target="_blank" href="https://colab.research.google.com/github/GAD-DIMNT-CPTEC/SMNA-Dashboard/tree/main">
+<a target="_blank" href="https://colab.research.google.com/github/GAD-DIMNT-CPTEC/SMNA-Dashboard/blob/main/SMNA-Dashboard-jupyter.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
