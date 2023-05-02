@@ -1,12 +1,12 @@
 # SMNA-Dashboard
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/GAD-DIMNT-CPTEC/SMNA-Dashboard/blob/main/SMNA-Dashboard-jupyter.ipynb/HEAD)
-
 Este repositório trata da organização e apresentação dos resultados do GSI em relação à minimização da função custo do 3DVar. São fornecidos três notebooks:
 
 1. `SMNA-Dashboard_load_files_create_dataframe_save.ipynb`: utilizado para a leitura e organização dos arquivos de log do GSI;
 2. `SMNA-Dashboard.ipynb`: utilizado para fornecer a interface de dashboard para a exploração dos resultados;
 3. `SMNA-Dashboard-jupyter.ipynb`: utilizado para fornecer as widgets sem a interface do dashboard (os dados são explorados dentro do próprio Jupyter).
+
+Nas animações a seguir, são mostradas as widgets dentro da interface do Jupyter e por meio do Panel (acessível em https://gad-dimnt-cptec.github.io/SMNA-Dashboard/SMNA-Dashboard.html).
 
 ![SMNA-Dashboard.gif](SMNA-Dashboard.gif)
 ![SMNA-Dashboard-panel.gif](SMNA-Dashboard-panel.gif)
@@ -51,7 +51,7 @@ radiance                     171806    1.8338082096514766E+05       1.067
 End Jo table outer loop
 ```
 
-A depender da quantidade de outer e inner loops, o GSI registra um número diferente de informações sobre o número de observações consideradas (`Nobs`), o custo da minimização (`Jo`) e o custo da minimização normalizado pelo número de observações (`Jo/n`). A configuração do GSI/3DVar aplicado ao SMNA (válido para a data de escrita deste notebook), considera `miter=2` e `niter=3`, ou seja, 2 outer loops com 3 inner loops cada. Nesse sentido, as informações obtidas a partir das iterações do processo de minimização da função custo, consideram o seguinte:
+A depender da quantidade de outer e inner loops, o GSI registra um número diferente de informações sobre o número de observações consideradas (`Nobs`), o custo da minimização (`Jo`) e o custo da minimização normalizado pelo número de observações (`Jo/n`). A configuração do GSI/3DVar aplicado ao SMNA (válido para a data de escrita deste notebook), considera `miter=2` e `niter=3`, ou seja, 2 outer loops com 3 inner loops cada. Para os experimentos considerados, cada inner loop (`niter`) é realizado com 0, 50 e 100 iterações, respectivamente. Nesse sentido, as informações obtidas a partir das iterações do processo de minimização da função custo, consideram o seguinte:
 
 * OMF: início do primeiro outer loop, onde o estado do sistema é dado pelo background;
 * OMF (1st INNER LOOP): final do primeiro inner loop do primeiro outer loop, onde o estado do sistema ainda é dado pelo background;
@@ -82,19 +82,19 @@ As informações do log do GSI são organizadas em um dataframe com a marcação
 
 Considerando vários experimentos, os dataframes são concatenados em um só (`dfs`), o qual é salvo em disco no formato CSV. A indexação do dataframe `dfs` pode ser feita da seguinte forma:
 
-1. Escolha de um subdataframe: 
+1. Escolha de um subdataframe (e.g., `df_dtc`): 
 
     `df_dtc1 = dfs.xs('df_dtc', axis=1)`
 
-2. Escolha de uma variável: 
+2. Escolha de uma variável (e.g., `surface pressure`): 
 
     `df_dtc1.loc[df_dtc1['Observation Type'] == 'surface pressure'].reset_index(drop=True)`
     
-3. Escolha de um parâmetro: 
+3. Escolha de um parâmetro (e.g., `Iter`): 
 
     `df_dtc1.loc[df_dtc1['Observation Type'] == 'surface pressure'].loc[df_dtc1['Iter'] == 'OMF'].reset_index(drop=True)`
     
-4. Escolha de um horário: 
+4. Escolha de um horário (e.g., `00:00:00`, o mesmo que 00Z): 
 
     `df_dtc1.loc[df_dtc1['Observation Type'] == 'surface pressure'].loc[df_dtc1['Iter'] == 'OMF'].set_index('Date').at_time(str('00:00:00')).reset_index(drop=False)`
 
