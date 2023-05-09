@@ -68,7 +68,7 @@ df_bamh_GT4AT2.name = 'df_bamh_GT4AT2'
 df_dtc_alex.name = 'df_dtc_alex'
 
 
-# In[6]:
+# In[5]:
 
 
 # Constrói as widgets e apresenta o dashboard
@@ -383,7 +383,8 @@ card_info = pn.Card(show_text.param.open, show_text, title='Informações', coll
 #update_note = pn.widgets.Button(name='Notify')
 #update_note.on_click(notify)
 
-settings = pn.Column(card_info, card_parameters)
+#settings = pn.Column(card_info, card_parameters)
+settings = pn.Column(card_parameters)
 
 ###
 
