@@ -102,6 +102,10 @@ Considerando vários experimentos, os dataframes são concatenados em um só (`d
 
     `df_dtc1.loc[df_dtc1['Observation Type'] == 'surface pressure'].loc[df_dtc1['Iter'] == 'OMF'].set_index('Date').at_time(str('00:00:00')).reset_index(drop=False)`
 
+5. Escolha de um intervalo de datas (e.g., `2023-02-17` a `2023-03-19`):
+
+    `df_dtc1.set_index(['Date']).loc['2023-02-17':'2023-02-19']`
+
 **Nota:** nesta versão, a consideração dos valores de `miter` e `niter` não está generalizada. Para outras configurações, será necessário ajustar os valores de `i` na função `df_Nobs`.
 
 ---
