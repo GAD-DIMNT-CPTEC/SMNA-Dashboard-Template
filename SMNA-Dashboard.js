@@ -91,10 +91,6 @@ pn.extension(sizing_mode="stretch_width", notifications=True)
 # Carrega o arquivo CSV
 
 dfs = pd.read_csv('https://raw.githubusercontent.com/GAD-DIMNT-CPTEC/SMNA-Dashboard/main/jo_table_series.csv', header=[0, 1], parse_dates=[('df_dtc', 'Date'),('df_bamh_T0', 'Date'),('df_bamh_T4', 'Date'),('df_bamh_GT4AT2', 'Date'),('df_dtc_alex', 'Date')])
-<<<<<<< HEAD
-#dfs = pd.read_csv('jo_table_series.csv', header=[0, 1], parse_dates=[('df_dtc', 'Date'),('df_bamh_T0', 'Date'),('df_bamh_T4', 'Date'),('df_bamh_GT4AT2', 'Date'),('df_dtc_alex', 'Date')])
-=======
->>>>>>> beb5dc4 (Atualizando arquivos)
 
 
 # In[3]:
@@ -126,11 +122,6 @@ df_dtc_alex.name = 'df_dtc_alex'
 
 # Constrói as widgets e apresenta o dashboard
 
-<<<<<<< HEAD
-experiment_list = [df_dtc, df_bamh_T0, df_bamh_T4, df_bamh_GT4AT2, df_dtc_alex]
-variable_list = ['surface pressure', 'temperature', 'wind', 'moisture', 'gps', 'radiance'] 
-synoptic_time_list = ['00Z', '06Z', '12Z', '18Z', '00Z e 12Z', '06Z e 18Z']
-=======
 start_date = df_dtc.iloc[0]['Date']
 end_date = df_dtc.iloc[-1]['Date']
 
@@ -145,7 +136,6 @@ date_range_slider = pn.widgets.DateRangeSlider(
 experiment_list = [df_dtc, df_bamh_T0, df_bamh_T4, df_bamh_GT4AT2, df_dtc_alex]
 variable_list = ['surface pressure', 'temperature', 'wind', 'moisture', 'gps', 'radiance'] 
 synoptic_time_list = ['00Z', '06Z', '12Z', '18Z', '00Z e 12Z', '06Z e 18Z', '00Z, 06Z, 12Z e 18Z']
->>>>>>> beb5dc4 (Atualizando arquivos)
 iter_fcost_list = ['OMF', 'OMF (1st INNER LOOP)', 'OMF (2nd INNER LOOP)', 'OMA (AFTER 1st OUTER LOOP)', 'OMA (1st INNER LOOP)', 'OMA (2nd INNER LOOP)', 'OMA (AFTER 2nd OUTER LOOP)']
 
 date_range = date_range_slider.value
