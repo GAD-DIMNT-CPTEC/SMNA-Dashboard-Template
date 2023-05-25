@@ -105,159 +105,10 @@ def subset_dataframe(df, start_date, end_date):
     return df.loc[mask]
 
 height=250
+width=1800
 
 @pn.depends(variable, experiment, synoptic_time, iter_fcost, date_range_slider.param.value)
-def plotNobs(variable, experiment, synoptic_time, iter_fcost, date_range):
-    for count, i in enumerate(experiment):
-        if count == 0:
-            sdf = globals()[i]
-            df = dfs.xs(sdf.name, axis=1)
-            
-            start_date, end_date = date_range
-            df2 = subset_dataframe(df, start_date, end_date)
-            
-            if synoptic_time == '00Z': time_fmt0 = '00:00:00'; time_fmt1 = '00:00:00'
-            if synoptic_time == '06Z': time_fmt0 = '06:00:00'; time_fmt1 = '06:00:00'
-            if synoptic_time == '12Z': time_fmt0 = '12:00:00'; time_fmt1 = '12:00:00'
-            if synoptic_time == '18Z': time_fmt0 = '18:00:00'; time_fmt1 = '18:00:00'    
-    
-            if synoptic_time == '00Z e 12Z': time_fmt0 = '00:00:00'; time_fmt1 = '12:00:00'
-            if synoptic_time == '06Z e 18Z': time_fmt0 = '06:00:00'; time_fmt1 = '18:00:00'
-    
-            if synoptic_time == '00Z e 06Z': time_fmt0 = '00:00:00'; time_fmt1 = '06:00:00'
-            if synoptic_time == '12Z e 18Z': time_fmt0 = '12:00:00'; time_fmt1 = '18:00:00'    
-    
-            if synoptic_time == '00Z, 06Z, 12Z e 18Z': time_fmt0 = '00:00:00'; time_fmt1 = '18:00:00'   
-    
-            if time_fmt0 == time_fmt1:
-                df_s = df2.loc[df2['Observation Type'] == variable].loc[df2['Iter'] == iter_fcost].set_index('Date').at_time(str(time_fmt0)).reset_index()
-            else:                
-                df_s = df2.loc[df2['Observation Type'] == variable].loc[df2['Iter'] == iter_fcost].set_index('Date').between_time(str(time_fmt0), str(time_fmt1), inclusive='both')
-                
-                if synoptic_time == '00Z e 12Z':
-                    df_s = df_s.drop(df_s.at_time('06:00:00').index).reset_index()
-                elif synoptic_time == '06Z e 18Z':    
-                    df_s = df_s.drop(df_s.at_time('12:00:00').index).reset_index()
-                elif synoptic_time == '00Z, 06Z, 12Z e 18Z':
-                    df_s = df_s.reset_index()                    
-                
-            xticks = len(df_s['Date'].values)    
-                
-            ax1 = df_s.hvplot.line(x='Date', y='Nobs', xlabel='Data', ylabel=str('Nobs'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height)
-            
-        else:
-            
-            sdf = globals()[i]
-            df = dfs.xs(sdf.name, axis=1)
-            
-            start_date, end_date = date_range
-            df2 = subset_dataframe(df, start_date, end_date)
-            
-            if synoptic_time == '00Z': time_fmt0 = '00:00:00'; time_fmt1 = '00:00:00'
-            if synoptic_time == '06Z': time_fmt0 = '06:00:00'; time_fmt1 = '06:00:00'
-            if synoptic_time == '12Z': time_fmt0 = '12:00:00'; time_fmt1 = '12:00:00'
-            if synoptic_time == '18Z': time_fmt0 = '18:00:00'; time_fmt1 = '18:00:00'    
-    
-            if synoptic_time == '00Z e 12Z': time_fmt0 = '00:00:00'; time_fmt1 = '12:00:00'
-            if synoptic_time == '06Z e 18Z': time_fmt0 = '06:00:00'; time_fmt1 = '18:00:00'
-    
-            if synoptic_time == '00Z, 06Z, 12Z e 18Z': time_fmt0 = '00:00:00'; time_fmt1 = '18:00:00'   
-    
-            if time_fmt0 == time_fmt1:
-                df_s = df2.loc[df2['Observation Type'] == variable].loc[df2['Iter'] == iter_fcost].set_index('Date').at_time(str(time_fmt0)).reset_index()
-            else:                    
-                df_s = df2.loc[df2['Observation Type'] == variable].loc[df2['Iter'] == iter_fcost].set_index('Date').between_time(str(time_fmt0), str(time_fmt1), inclusive='both')
-
-                if synoptic_time == '00Z e 12Z':
-                    df_s = df_s.drop(df_s.at_time('06:00:00').index).reset_index()
-                elif synoptic_time == '06Z e 18Z':    
-                    df_s = df_s.drop(df_s.at_time('12:00:00').index).reset_index()
-                elif synoptic_time == '00Z, 06Z, 12Z e 18Z':
-                    df_s = df_s.reset_index()                    
-                
-            xticks = len(df_s['Date'].values)
-            
-            ax1 *= df_s.hvplot.line(x='Date', y='Nobs', xlabel='Data', ylabel=str('Nobs'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height)
-            
-    return ax1
-
-@pn.depends(variable, experiment, synoptic_time, iter_fcost, date_range_slider.param.value)
-def plotJo(variable, experiment, synoptic_time, iter_fcost, date_range):
-    for count, i in enumerate(experiment):
-        if count == 0:
-            sdf = globals()[i]
-            df = dfs.xs(sdf.name, axis=1)
-            
-            start_date, end_date = date_range
-            df2 = subset_dataframe(df, start_date, end_date)
-            
-            if synoptic_time == '00Z': time_fmt0 = '00:00:00'; time_fmt1 = '00:00:00'
-            if synoptic_time == '06Z': time_fmt0 = '06:00:00'; time_fmt1 = '06:00:00'
-            if synoptic_time == '12Z': time_fmt0 = '12:00:00'; time_fmt1 = '12:00:00'
-            if synoptic_time == '18Z': time_fmt0 = '18:00:00'; time_fmt1 = '18:00:00'    
-    
-            if synoptic_time == '00Z e 12Z': time_fmt0 = '00:00:00'; time_fmt1 = '12:00:00'
-            if synoptic_time == '06Z e 18Z': time_fmt0 = '06:00:00'; time_fmt1 = '18:00:00'
-    
-            if synoptic_time == '00Z e 06Z': time_fmt0 = '00:00:00'; time_fmt1 = '06:00:00'
-            if synoptic_time == '12Z e 18Z': time_fmt0 = '12:00:00'; time_fmt1 = '18:00:00'    
-    
-            if synoptic_time == '00Z, 06Z, 12Z e 18Z': time_fmt0 = '00:00:00'; time_fmt1 = '18:00:00'   
-    
-            if time_fmt0 == time_fmt1:
-                df_s = df2.loc[df2['Observation Type'] == variable].loc[df2['Iter'] == iter_fcost].set_index('Date').at_time(str(time_fmt0)).reset_index()
-            else:                
-                df_s = df2.loc[df2['Observation Type'] == variable].loc[df2['Iter'] == iter_fcost].set_index('Date').between_time(str(time_fmt0), str(time_fmt1), inclusive='both')
-                
-                if synoptic_time == '00Z e 12Z':
-                    df_s = df_s.drop(df_s.at_time('06:00:00').index).reset_index()
-                elif synoptic_time == '06Z e 18Z':    
-                    df_s = df_s.drop(df_s.at_time('12:00:00').index).reset_index()
-                elif synoptic_time == '00Z, 06Z, 12Z e 18Z':
-                    df_s = df_s.reset_index()                    
-                
-            xticks = len(df_s['Date'].values)    
-                
-            ax2 = df_s.hvplot.line(x='Date', y='Jo', xlabel='Data', ylabel=str('Jo'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height)
-            
-        else:
-            
-            sdf = globals()[i]
-            df = dfs.xs(sdf.name, axis=1)
-            
-            start_date, end_date = date_range
-            df2 = subset_dataframe(df, start_date, end_date)
-            
-            if synoptic_time == '00Z': time_fmt0 = '00:00:00'; time_fmt1 = '00:00:00'
-            if synoptic_time == '06Z': time_fmt0 = '06:00:00'; time_fmt1 = '06:00:00'
-            if synoptic_time == '12Z': time_fmt0 = '12:00:00'; time_fmt1 = '12:00:00'
-            if synoptic_time == '18Z': time_fmt0 = '18:00:00'; time_fmt1 = '18:00:00'    
-    
-            if synoptic_time == '00Z e 12Z': time_fmt0 = '00:00:00'; time_fmt1 = '12:00:00'
-            if synoptic_time == '06Z e 18Z': time_fmt0 = '06:00:00'; time_fmt1 = '18:00:00'
-    
-            if synoptic_time == '00Z, 06Z, 12Z e 18Z': time_fmt0 = '00:00:00'; time_fmt1 = '18:00:00'   
-    
-            if time_fmt0 == time_fmt1:
-                df_s = df2.loc[df['Observation Type'] == variable].loc[df2['Iter'] == iter_fcost].set_index('Date').at_time(str(time_fmt0)).reset_index()
-            else:                    
-                df_s = df2.loc[df['Observation Type'] == variable].loc[df2['Iter'] == iter_fcost].set_index('Date').between_time(str(time_fmt0), str(time_fmt1), inclusive='both')
-
-                if synoptic_time == '00Z e 12Z':
-                    df_s = df_s.drop(df_s.at_time('06:00:00').index).reset_index()
-                elif synoptic_time == '06Z e 18Z':    
-                    df_s = df_s.drop(df_s.at_time('12:00:00').index).reset_index()
-                elif synoptic_time == '00Z, 06Z, 12Z e 18Z':
-                    df_s = df_s.reset_index()                    
-                
-            xticks = len(df_s['Date'].values)
-            
-            ax2 *= df_s.hvplot.line(x='Date', y='Jo', xlabel='Data', ylabel=str('Jo'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height)
-            
-    return ax2
-
-@pn.depends(variable, experiment, synoptic_time, iter_fcost, date_range_slider.param.value)
-def plotJon(variable, experiment, synoptic_time, iter_fcost, date_range):
+def plotCurves(variable, experiment, synoptic_time, iter_fcost, date_range):
     for count, i in enumerate(experiment):
         if count == 0:
             sdf = globals()[i]
@@ -293,7 +144,9 @@ def plotJon(variable, experiment, synoptic_time, iter_fcost, date_range):
                 
             xticks = len(df_s['Date'].values)    
                 
-            ax3 = df_s.hvplot.line(x='Date', y='Jo/n', xlabel='Data', ylabel=str('Jo/n'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height)
+            ax_nobs = df_s.hvplot.line(x='Date', y='Nobs', xlabel='Data', ylabel=str('Nobs'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height, responsive=True)    
+            ax_jo = df_s.hvplot.line(x='Date', y='Jo', xlabel='Data', ylabel=str('Jo'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height, responsive=True)    
+            ax_jon = df_s.hvplot.line(x='Date', y='Jo/n', xlabel='Data', ylabel=str('Jo/n'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height, responsive=True)
             
         else:
             
@@ -327,9 +180,11 @@ def plotJon(variable, experiment, synoptic_time, iter_fcost, date_range):
                 
             xticks = len(df_s['Date'].values)
             
-            ax3 *= df_s.hvplot.line(x='Date', y='Jo/n', xlabel='Data', ylabel=str('Jo/n'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height)
+            ax_nobs *= df_s.hvplot.line(x='Date', y='Nobs', xlabel='Data', ylabel=str('Nobs'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height, responsive=True)
+            ax_jo *= df_s.hvplot.line(x='Date', y='Jo', xlabel='Data', ylabel=str('Jo'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height, responsive=True)
+            ax_jon *= df_s.hvplot.line(x='Date', y='Jo/n', xlabel='Data', ylabel=str('Jo/n'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height, responsive=True)
             
-    return ax3
+    return pn.Column(ax_nobs, ax_jo, ax_jon, sizing_mode='stretch_width')
 
 ###
 
@@ -390,15 +245,13 @@ settings = pn.Column(card_parameters)
 
 pn.Column(
     settings,
-    plotNobs,
-    plotJo,
-    plotJon,
+    plotCurves,
     width_policy='max'
 )
 
 pn.template.FastListTemplate(
     site="SMNA Dashboard", title="Função Custo", sidebar=[settings],
-    main=["Visualização da minimização da função custo variacional do **SMNA**.", plotNobs, plotJo, plotJon], 
+    main=["Visualização da minimização da função custo variacional do **SMNA**.", plotCurves], 
 #).show();
 ).servable();
 
