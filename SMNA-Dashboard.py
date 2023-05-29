@@ -41,7 +41,8 @@ pn.extension(sizing_mode="stretch_width", notifications=True)
 
 # Carrega o arquivo CSV
 
-dfs = pd.read_csv('https://raw.githubusercontent.com/GAD-DIMNT-CPTEC/SMNA-Dashboard/main/jo_table_series.csv', header=[0, 1], parse_dates=[('df_dtc', 'Date'),('df_bamh_T0', 'Date'),('df_bamh_T4', 'Date'),('df_bamh_GT4AT2', 'Date'),('df_dtc_alex', 'Date')])
+#dfs = pd.read_csv('https://raw.githubusercontent.com/GAD-DIMNT-CPTEC/SMNA-Dashboard/main/jo_table_series.csv', header=[0, 1], parse_dates=[('df_dtc', 'Date'),('df_bamh_T0', 'Date'),('df_bamh_T4', 'Date'),('df_bamh_GT4AT2', 'Date'),('df_dtc_alex', 'Date')])
+dfs = pd.read_csv('https://s0.cptec.inpe.br/pesquisa/das/dist/carlos.bastarz/SMNA/dashboard/jo_table_series.csv', header=[0, 1], parse_dates=[('df_dtc', 'Date'),('df_bamh_T0', 'Date'),('df_bamh_T4', 'Date'),('df_bamh_GT4AT2', 'Date'),('df_dtc_alex', 'Date')]) 
 
 
 # In[3]:
@@ -105,7 +106,6 @@ def subset_dataframe(df, start_date, end_date):
     return df.loc[mask]
 
 height=250
-width=1800
 
 @pn.depends(variable, experiment, synoptic_time, iter_fcost, date_range_slider.param.value)
 def plotCurves(variable, experiment, synoptic_time, iter_fcost, date_range):
