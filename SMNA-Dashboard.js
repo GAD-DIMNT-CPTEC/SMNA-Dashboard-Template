@@ -90,8 +90,8 @@ pn.extension(sizing_mode="stretch_width", notifications=True)
 
 # Carrega o arquivo CSV
 
-#dfs = pd.read_csv('https://raw.githubusercontent.com/GAD-DIMNT-CPTEC/SMNA-Dashboard/main/jo_table_series.csv', header=[0, 1], parse_dates=[('df_dtc', 'Date'),('df_bamh_T0', 'Date'),('df_bamh_T4', 'Date'),('df_bamh_GT4AT2', 'Date'),('df_dtc_alex', 'Date')])
-dfs = pd.read_csv('https://s0.cptec.inpe.br/pesquisa/das/dist/carlos.bastarz/SMNA/dashboard/jo_table_series.csv', header=[0, 1], parse_dates=[('df_dtc', 'Date'),('df_bamh_T0', 'Date'),('df_bamh_T4', 'Date'),('df_bamh_GT4AT2', 'Date'),('df_dtc_alex', 'Date')]) 
+dfs = pd.read_csv('https://raw.githubusercontent.com/GAD-DIMNT-CPTEC/SMNA-Dashboard/main/jo_table_series.csv', header=[0, 1], parse_dates=[('df_dtc', 'Date'),('df_bamh_T0', 'Date'),('df_bamh_T4', 'Date'),('df_bamh_GT4AT2', 'Date'),('df_dtc_alex', 'Date')])
+#dfs = pd.read_csv('https://s0.cptec.inpe.br/pesquisa/das/dist/carlos.bastarz/SMNA/dashboard/jo_table_series.csv', header=[0, 1], parse_dates=[('df_dtc', 'Date'),('df_bamh_T0', 'Date'),('df_bamh_T4', 'Date'),('df_bamh_GT4AT2', 'Date'),('df_dtc_alex', 'Date')]) 
 
 
 # In[3]:
