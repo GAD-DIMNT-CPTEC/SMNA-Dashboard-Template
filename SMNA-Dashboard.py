@@ -3,7 +3,7 @@
 
 # # SMNA-Dashboard
 # 
-# Este notebook trata da apresentação dos resultados do GSI em relação à minimização da função custo do 3DVar. A apresentação dos resultados é feita a partir da leitura de um arquivo CSV e os gráficos são mostrados em um dashboard do Panel para explorar as informações nele contidas. Para mais informações sobre o arquivo CSV e a sua estrutura de dados, veja o notebook `SMNA-Dashboard-load_files_create_dataframe_save.ipynb`.
+# Este notebook trata da apresentação dos resultados do GSI em relação à minimização da função custo (Jo - termo referente às observações) do 3DVar. A apresentação dos resultados é feita a partir da leitura de um arquivo CSV e os gráficos são mostrados em um dashboard do Panel para explorar as informações nele contidas. Para mais informações sobre o arquivo CSV e a sua estrutura de dados, veja o notebook `SMNA-Dashboard-load_files_create_dataframe_save.ipynb`.
 # 
 # Para realizar o deploy do dashboard no GitHub, é necessário converter este notebook em um script executável, o que pode ser feito a partir da interface do Jupyter (File -> Save and Export Notebook As... -> Executable Script). A seguir, utilize o comando abaixo para converter o script em uma página HTML. Junto com a página, será gerado um arquivo JavaScript e ambos devem ser adicionados ao repositório, junto com o arquivo CSV.
 # 
@@ -29,7 +29,7 @@ import numpy as np
 import pandas as pd
 import hvplot.pandas
 import panel as pn
-from panel_modal import Modal
+#from panel_modal import Modal
 from datetime import datetime, timedelta
 from matplotlib import pyplot as plt
 
@@ -225,12 +225,12 @@ Atualizado em: 09/05/2023 ([carlos.bastarz@inpe.br](mailto:carlos.bastarz@inpe.b
 
 """
 
-show_text = Modal(pn.panel(text_info, width=850))
+#show_text = Modal(pn.panel(text_info, width=850))
 
 card_parameters = pn.Card(variable, iter_fcost, date_range_slider, synoptic_time, pn.Column(experiment, height=240),
                           title='Parâmetros', collapsed=False)
 
-card_info = pn.Card(show_text.param.open, show_text, title='Informações', collapsed=False)
+#card_info = pn.Card(show_text.param.open, show_text, title='Informações', collapsed=False)
 
 #def notify(event):
 #    pn.state.notifications.info('Página atualizada em 2023-05-08', duration=5000)
@@ -250,8 +250,8 @@ pn.Column(
 )
 
 pn.template.FastListTemplate(
-    site="SMNA Dashboard", title="Função Custo", sidebar=[settings],
-    main=["Visualização da minimização da função custo variacional do **SMNA**.", plotCurves], 
+    site="SMNA Dashboard", title="Função Custo (Jo)", sidebar=[settings],
+    main=["Visualização da minimização do termo **Jo** da função custo variacional do **SMNA**.", plotCurves], 
 #).show();
 ).servable();
 

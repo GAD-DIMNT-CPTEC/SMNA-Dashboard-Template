@@ -4,7 +4,7 @@
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
-Este repositório trata da organização e apresentação dos resultados do GSI em relação à minimização da função custo do 3DVar. São fornecidos três notebooks:
+Este repositório trata da organização e apresentação dos resultados do GSI em relação à minimização da função custo (Jo - termo referente às observações) do 3DVar. São fornecidos três notebooks:
 
 1. `SMNA-Dashboard_load_files_create_dataframe_save.ipynb`: utilizado para a leitura e organização dos arquivos de log do GSI;
 2. `SMNA-Dashboard.ipynb`: utilizado para fornecer a interface de dashboard para a exploração dos resultados;
@@ -55,7 +55,7 @@ radiance                     171806    1.8338082096514766E+05       1.067
 End Jo table outer loop
 ```
 
-A depender da quantidade de outer e inner loops, o GSI registra um número diferente de informações sobre o número de observações consideradas (`Nobs`), o custo da minimização (`Jo`) e o custo da minimização normalizado pelo número de observações (`Jo/n`). A configuração do GSI/3DVar aplicado ao SMNA (válido para a data de escrita deste notebook), considera `miter=2` e `niter=3`, ou seja, 2 outer loops com 3 inner loops cada. Para os experimentos considerados, cada inner loop (`niter`) é realizado com 0, 50 e 100 iterações, respectivamente. Nesse sentido, as informações obtidas a partir das iterações do processo de minimização da função custo, consideram o seguinte:
+A depender da quantidade de outer e inner loops, o GSI registra um número diferente de informações sobre o número de observações consideradas (`Nobs`), o custo da minimização do termo observacional (`Jo`) e o custo da minimização do termo observacional normalizado pelo número de observações (`Jo/n`). A configuração do GSI/3DVar aplicado ao SMNA (válido para a data de escrita deste notebook), considera `miter=2` e `niter=3`, ou seja, 2 outer loops com 3 inner loops cada. Para os experimentos considerados, cada inner loop (`niter`) é realizado com 0, 50 e 100 iterações, respectivamente. Nesse sentido, as informações obtidas a partir das iterações do processo de minimização da função custo do termo observacional, consideram o seguinte:
 
 * OMF: início do primeiro outer loop, onde o estado do sistema é dado pelo background;
 * OMF (1st INNER LOOP): final do primeiro inner loop do primeiro outer loop, onde o estado do sistema ainda é dado pelo background;
