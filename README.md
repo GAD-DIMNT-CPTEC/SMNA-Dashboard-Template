@@ -1,16 +1,16 @@
-# SMNA-Dashboard
+# SMNA-Dashboard-Template
 
-<a target="_blank" href="https://colab.research.google.com/github/GAD-DIMNT-CPTEC/SMNA-Dashboard/blob/main/SMNA-Dashboard-jupyter.ipynb">
+<a target="_blank" href="https://colab.research.google.com/github/GAD-DIMNT-CPTEC/SMNA-Dashboard-Template/blob/main/SMNA-Dashboard-jupyter.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
-Este repositório trata da organização e apresentação dos resultados do GSI em relação à minimização da função custo (Jo - termo referente às observações) do 3DVar. São fornecidos três notebooks:
+Este repositório trata da organização e apresentação dos resultados do GSI em relação à minimização da função custo (Jo - termo referente às observações) do 3DVar e pode ser utilizado como template para outros dashboards. São fornecidos três notebooks:
 
 1. `SMNA-Dashboard_load_files_create_dataframe_save.ipynb`: utilizado para a leitura e organização dos arquivos de log do GSI;
 2. `SMNA-Dashboard.ipynb`: utilizado para fornecer a interface de dashboard para a exploração dos resultados;
 3. `SMNA-Dashboard-jupyter.ipynb`: utilizado para fornecer as widgets sem a interface do dashboard (os dados são explorados dentro do próprio Jupyter).
 
-Nas animações a seguir, são mostradas as widgets dentro da interface do Jupyter e por meio do Panel (acessível em https://gad-dimnt-cptec.github.io/SMNA-Dashboard/SMNA-Dashboard.html).
+Nas animações a seguir, são mostradas as widgets dentro da interface do Jupyter e por meio do Panel (acessível em https://gad-dimnt-cptec.github.io/SMNA-Dashboard-Template/SMNA-Dashboard.html).
 
 ![SMNA-Dashboard.gif](SMNA-Dashboard.gif)
 ![SMNA-Dashboard-panel.gif](SMNA-Dashboard-panel.gif)
