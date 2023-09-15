@@ -85,16 +85,16 @@ from matplotlib import pyplot as plt
 pn.extension(sizing_mode="stretch_width", notifications=True)
 
 
-# In[2]:
+# In[3]:
 
 
 # Carrega o arquivo CSV
 
-dfs = pd.read_csv('https://raw.githubusercontent.com/GAD-DIMNT-CPTEC/SMNA-Dashboard/main/jo_table_series.csv', header=[0, 1], parse_dates=[('df_dtc', 'Date'),('df_bamh_T0', 'Date'),('df_bamh_T4', 'Date'),('df_bamh_GT4AT2', 'Date'),('df_dtc_alex', 'Date')])
+dfs = pd.read_csv('https://raw.githubusercontent.com/GAD-DIMNT-CPTEC/SMNA-Dashboard-Template/main/jo_table_series.csv', header=[0, 1], parse_dates=[('df_dtc', 'Date'),('df_bamh_T0', 'Date'),('df_bamh_T4', 'Date'),('df_bamh_GT4AT2', 'Date'),('df_dtc_alex', 'Date')])
 #dfs = pd.read_csv('https://s0.cptec.inpe.br/pesquisa/das/dist/carlos.bastarz/SMNA/dashboard/jo_table_series.csv', header=[0, 1], parse_dates=[('df_dtc', 'Date'),('df_bamh_T0', 'Date'),('df_bamh_T4', 'Date'),('df_bamh_GT4AT2', 'Date'),('df_dtc_alex', 'Date')]) 
 
 
-# In[3]:
+# In[4]:
 
 
 # Separa os dataframes de interesse
@@ -106,7 +106,7 @@ df_bamh_GT4AT2 = dfs.df_bamh_GT4AT2
 df_dtc_alex = dfs.df_dtc_alex
 
 
-# In[4]:
+# In[5]:
 
 
 # Atribui nomes aos dataframes
@@ -118,7 +118,7 @@ df_bamh_GT4AT2.name = 'df_bamh_GT4AT2'
 df_dtc_alex.name = 'df_dtc_alex'
 
 
-# In[5]:
+# In[7]:
 
 
 # Constrói as widgets e apresenta o dashboard
@@ -197,6 +197,10 @@ def plotCurves(variable, experiment, synoptic_time, iter_fcost, date_range):
             ax_jo = df_s.hvplot.line(x='Date', y='Jo', xlabel='Data', ylabel=str('Jo'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height, responsive=True)    
             ax_jon = df_s.hvplot.line(x='Date', y='Jo/n', xlabel='Data', ylabel=str('Jo/n'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height, responsive=True)
             
+            sax_nobs = df_s.hvplot.scatter(x='Date', y='Nobs', label=str(i), height=height, responsive=True).opts(size=5, marker='o')    
+            sax_jo = df_s.hvplot.scatter(x='Date', y='Jo', label=str(i), height=height, responsive=True).opts(size=5, marker='o')    
+            sax_jon = df_s.hvplot.scatter(x='Date', y='Jo/n', label=str(i), height=height, responsive=True).opts(size=5, marker='o')            
+            
         else:
             
             sdf = globals()[i]
@@ -233,7 +237,11 @@ def plotCurves(variable, experiment, synoptic_time, iter_fcost, date_range):
             ax_jo *= df_s.hvplot.line(x='Date', y='Jo', xlabel='Data', ylabel=str('Jo'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height, responsive=True)
             ax_jon *= df_s.hvplot.line(x='Date', y='Jo/n', xlabel='Data', ylabel=str('Jo/n'), xticks=xticks, rot=90, grid=True, label=str(i), line_width=3, height=height, responsive=True)
             
-    return pn.Column(ax_nobs, ax_jo, ax_jon, sizing_mode='stretch_width')
+            sax_nobs *= df_s.hvplot.scatter(x='Date', y='Nobs', label=str(i), height=height, responsive=True).opts(size=5, marker='o')    
+            sax_jo *= df_s.hvplot.scatter(x='Date', y='Jo', label=str(i), height=height, responsive=True).opts(size=5, marker='o')    
+            sax_jon *= df_s.hvplot.scatter(x='Date', y='Jo/n', label=str(i), height=height, responsive=True).opts(size=5, marker='o')               
+            
+    return pn.Column(ax_nobs*sax_nobs, ax_jo*sax_jo, ax_jon*sax_jon, sizing_mode='stretch_width')
 
 ###
 
